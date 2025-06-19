@@ -1,0 +1,35 @@
+# Ethereum PoS 私有网络配置 - 基于最新的 ethereum-package
+# 使用方法: kurtosis run github.com/ethpandaops/ethereum-package --args-file ./kurtosis-setup.yaml
+
+participants:
+  - el_type: geth # 执行层客户端：Geth
+    cl_type: lighthouse # 共识层客户端：Lighthouse
+    count: 2 # 2个节点对
+    el_extra_params: [] # Geth 额外参数
+    cl_extra_params: [] # Lighthouse 额外参数
+    validator_count: 64 # 每个节点的验证器数量
+
+network_params:
+  network_id: "12345" # 自定义网络 ID
+  deposit_contract_address: "0x4242424242424242424242424242424242424242"
+  genesis_delay: 10 # 创世延迟（秒）
+  slot_duration_in_seconds: 12 # 每个 slot 持续时间
+  preregistered_validator_keys_mnemonic: "giant issue aisle success illegal bike spike question tent bar rely arctic volcano long crawl hungry vocal artwork sniff fantasy very lucky have athlete"
+  seconds_per_slot: 12 # 每个 slot 秒数
+  slots_per_epoch: 32 # 每个 epoch 的 slot 数
+
+# 启用额外服务
+launch_additional_services:
+  - dora # 区块浏览器
+  - prometheus_grafana # 监控服务
+
+# 全局日志级别
+global_log_level: info
+
+# 可选：启用 MEV 功能（如需要可取消注释）
+# mev_type: mock
+# mev_params: {}
+
+# 端口配置（可选）
+port_publisher:
+  nat_exit_ip: KURTOSIS_IP_ADDR_PLACEHOLDER
